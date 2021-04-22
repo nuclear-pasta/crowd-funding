@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-    factory :campaign do
-        name {'Crypto'}
-        code {'CRPT'}
-    end
+  factory :sector do
+    name { 'Crypto' }
+    code { 'CRPT' }
   end
+end
