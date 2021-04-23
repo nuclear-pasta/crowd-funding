@@ -5,17 +5,17 @@ RSpec.describe CampaignSynchronizer::AttributeUpdater do
   let!(:investment) { create(:investment, campaign: campaign) }
   describe '#initialize' do
     it 'initializes an instance of the class' do
-      sut = CampaignSynchronizer::AttributeUpdater .new(campaign, [investment])
+      sut = CampaignSynchronizer::AttributeUpdater.new(campaign, [investment])
       expect(sut).to be_an_instance_of(CampaignSynchronizer::AttributeUpdater)
     end
   end
   describe '#update_attributes' do
     it 'it updates the attribute with the correct percentage based on the total investments' do
-      sut = CampaignSynchronizer::AttributeUpdater .new(campaign, [investment])
-      expect(campaign.percentage_raised).to eq 0
+      sut = CampaignSynchronizer::AttributeUpdater.new(campaign, [investment, investment])
+      expect(campaign.percentage_raised).to eq 0.1157e-4
       expect(sut.update_attributes).to eq true
       campaign.reload
-      expect(campaign.percentage_raised).to eq 0.1157e-4
+      expect(campaign.percentage_raised).to eq 0.2314e-4
     end
   end
   describe '#calculate_percentage' do
