@@ -5,33 +5,17 @@ module Api
     # Abstract class that implements the basic utilities
     # for an API controller (not found, errors etc.)
     class BaseController < ApplicationController
-      around_action :handle_errors
+      rescue_from StandardError, with: :handle_error
 
-      def handle_errors
-        yield
-      rescue ActionController::ParameterMissing
-        head :bad_request
-      rescue ActiveRecord::RecordNotFound
-        head :not_found
-      rescue ActiveRecord::RecordInvalid => e
-        response = ErrorsBlueprint.render_as_hash(e.record)
-        render_api_error(errors: response, code: :unprocessable_entity)
+      def handle_error(e)
+        case e.class.to_s
+        when "ActiveRecord::RecordNotFound"
+          head :not_found
+        else
+         head :bad_request
+        end
       end
 
-      protected
-
-      def render_api_error(errors:, code:)
-        data = { errors: errors }
-        render json: data, status: code
-      end
-
-      def all_ok
-        head 200
-      end
-
-      def raise_not_found
-        raise ActiveRecord::RecordNotFound
-      end
     end
   end
   end

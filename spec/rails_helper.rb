@@ -38,7 +38,7 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
-support_files = Rails.root.join('spec', 'requests', 'support', '**', '*.rb')
+support_files = Rails.root.join('spec', 'support', '**', '*.rb')
 Dir[support_files].sort.each do |f|
   require f
 end

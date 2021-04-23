@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "required": [
+        "campaign"
+    ],
+    "properties": {
+        "campaign": {
+            "type": "object",
+            "required": [
+                "name",
+                "image_source",
+                "target",
+                "minimum_investment",
+                "percentage_raised",
+                "sector",
+                "country"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "image_source": {
+                    "type": "string"
+                },
+                "target": {
+                    "type": "string"
+                },
+                "minimum_investment": {
+                    "type": "string"
+                },
+                "percentage_raised": {
+                    "type": "string"
+                },
+                "sector": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
