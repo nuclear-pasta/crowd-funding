@@ -11,3 +11,12 @@ GET /api/v1/campaigns/:id
 
 They can be tested though Postman
 run `rspec spec` in order to run tests
+
+To run dockerized app
+docker-compose build
+docker-compose run web rake db:create db:migrate db:seed
+docker-compose up
+
+To run tests:
+
+docker-compose run -e "RAILS_ENV=test" web bundle exec rspec spec
